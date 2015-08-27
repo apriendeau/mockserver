@@ -31,7 +31,6 @@ func sampleRoutes() []mockserver.Route {
 		}),
 	}
 	return []mockserver.Route{first, second}
-
 }
 
 func TestWithRoutes(t *testing.T) {
