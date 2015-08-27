@@ -39,3 +39,9 @@ func XML(code int, body interface{}) (*httptest.Server, error) {
 	}
 	return Simple(code, "text/xml", string(b)), nil
 }
+
+// HandlerFunc takes a http.HandlerFunc instead of a body so you can do whatever
+// that you would like and take full control
+func HandlerFunc(fn http.HandlerFunc) *httptest.Server {
+	return httptest.NewServer(fn)
+}

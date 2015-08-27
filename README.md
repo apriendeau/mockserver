@@ -85,22 +85,35 @@ func TestAllTheThings(t *testing) {
 
 ### FAQs
 
-Q. Can you create more than one server in a function?
+*Q.* Can you create more than one server in a function?
 
-A. Yes, you can because mockserver is just riding on top of httptest.Server.
+*A.* Yes, you can because mockserver is just riding on top of httptest.Server.
 This also prevents url and port collisions so you can spin up several different
 mocks for you.
 
-Q. Why do I have to close the server?
+*Q.* Why do I have to close the server?
 
-A. mockserver cannot predict when you are done with your tests so you can defer
+*A.* mockserver cannot predict when you are done with your tests so you can defer
 or you can close at the end since this is just helper functions around httptest.
 
-Q. What sparked the desire?
+*Q.* What sparked the desire?
 
-A. Well, integration/functional testing when building a PaaS service on top of
+*A.* Well, integration/functional testing when building a PaaS service on top of
 Mesosphere is rather annoying and slow to spin up several docker containers with
 each service so now, I can create mocks of those APIs with ease.
+
+*Q.* Can I use an existing router?
+
+*A.* Yes, you can if it implents http.Handle interface. Here is an example using
+httprouter.
+
+```go
+mockserver.HandlerFunc(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){
+	router := httprouter.New()
+	router.ServerHTTP(w,r)
+}))
+
+```
 
 ### Contributing
 
