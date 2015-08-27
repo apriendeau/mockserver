@@ -25,11 +25,13 @@ testing.
 
 ### Routes (borrowed from the routing tests)
 
-```golang
+```go
 package your_test
 
 import (
-	"testing"
+	"bytes"
+	"fmt"
+	"net/http"
 
 	"github.com/apriendeau/mockserver"
 	"github.com/stretchr/testify/assert"
