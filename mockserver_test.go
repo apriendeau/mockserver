@@ -34,7 +34,7 @@ func parseResp(body io.Reader) (string, error) {
 func TestNewMockServer(t *testing.T) {
 	t.Parallel()
 	assert := assert.New(t)
-	server := mockserver.Clean(200, "application/json", `{"hello":"world"}`)
+	server := mockserver.Simple(200, "application/json", `{"hello":"world"}`)
 	defer server.Close()
 	resp, err := http.Get(server.URL + "/testing")
 	assert.NoError(err)

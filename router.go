@@ -8,16 +8,15 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
+// Route is common structure for setting up routes with the mockserver
 type Route struct {
 	Method string
 	Path   string
 	Handle httprouter.Handle
 }
 
-type Router struct {
-	routes []Route
-}
-
+// WithRoutes creates a new mockserver that takes an array of routes and puts
+// them into a httptest.Server
 func WithRoutes(rtes []Route) *httptest.Server {
 	router := httprouter.New()
 	for _, route := range rtes {

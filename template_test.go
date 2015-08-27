@@ -16,9 +16,9 @@ func TestTemplateServer(t *testing.T) {
 		Thing: "wood",
 		Count: 2,
 	}
-	tmpl, err := mockserver.NewTemplate("base", "{{.Count}} {{.Item}}s are made of {{.Thing}}", o)
+	tmpl, err := mockserver.NewTemplate("base", "{{.Count}} {{.Item}}s are made of {{.Thing}}")
 	assert.NoError(err)
-	server := tmpl.Server(200, "plain/text")
+	server := tmpl.Server(200, "plain/text", o)
 	defer server.Close()
 
 	resp, err := http.Get(server.URL + "/testing")
