@@ -97,7 +97,7 @@ each service so now, I can create mocks of those APIs with ease.
 
 **Q.** Can I use an existing router?
 
-**A.** Yes, you can if it implents http.Handle interface. Here is an example using
+**A.** Yes, you can if it implements http.Handle interface. Here is an example using
 httprouter.
 
 ```go
