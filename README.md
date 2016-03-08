@@ -2,24 +2,15 @@
 
 [![Go Doc](https://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](https://godoc.org/github.com/apriendeau/mockserver)
 
-When do you write a library? Its either:
-
-A. You need something that noone has done
-B. Something is just urking you because you need it
-C. All of the Above
-
-It this case, its C.
-
 I have seen no good example or explanation on mocking when it comes to doing
 integration testing. You don't want your tests to always all a third party API
 or you need to create a mockserver of your API. Either way, the key feature
 about this mockserver is *ROUTING* which I went with [httprouter](github.com/julienschmidt/httprouter) because I like
-speed. Yes, there is helper functions to generate one off `httptest.Server` for
-JSON and XML as well a Simple one.
+speed. There is helper functions to generate one off `httptest.Server` for
+JSON and XML as well a simple one.
 
 This merely is exposing the unmodified power of routing from httprouter to
 testing.
-
 
 ## Let's get this party started
 
@@ -62,7 +53,7 @@ func sampleRoutes() []mockserver.Route {
 func TestAllTheThings(t *testing) {
 	assert := assert.New(t)
 	routes := sampleRoutes()
-	server := mockserver.WithRoutes(rtes)
+	server := mockserver.WithRoutes(routes)
 	defer server.Close()
 
 	resp, err := http.Get(server.URL + "/random")
